@@ -72,7 +72,7 @@ except Exception as e:
 # not match and have errors. Must be all lowercase and no spaces! Should also
 # be unique among any other addons that could exist (using this updater code),
 # to avoid clashes in operator registration.
-updater.addon = "addon_updater_demo"
+updater.addon = "CPPanel"
 
 
 # -----------------------------------------------------------------------------
@@ -256,7 +256,7 @@ class AddonUpdaterCheckNow(bpy.types.Operator):
 
         updater.set_check_interval(
             enabled=settings.auto_check_update,
-            months=settings.updater_intrval_months,
+            months=settings.updater_interval_months,
             days=settings.updater_interval_days,
             hours=settings.updater_interval_hours,
             minutes=settings.updater_interval_minutes)
