@@ -1348,7 +1348,7 @@ def register(bl_info):
 
     updater.repo = "UNSLTV_Addons"
     
-    updater.website = "https://github.com/jtmangione/UNSLTV_Addons/"
+    updater.website = "https://github.com/jtmangione/UNSLTV_Addons"
 
     updater.subfolder_path = ""
 
