@@ -1353,16 +1353,16 @@ def register(bl_info):
     updater.private_token = None  # "tokenstring"
 
     # Choose your own username, must match website (not needed for GitLab).
-    updater.user = "cgcookie"
+    updater.user = "jtmangione"
 
     # Choose your own repository, must match git name for GitHUb and Bitbucket,
     # for GitLab use project ID (numbers only).
-    updater.repo = "blender-addon-updater"
+    updater.repo = "UNSLTV_Addons"
 
     # updater.addon = # define at top of module, MUST be done first
 
     # Website for manual addon download, optional but recommended to set.
-    updater.website = "https://github.com/CGCookie/blender-addon-updater/"
+    updater.website = "https://github.com/jtmangione/UNSLTV_Addons/"
 
     # Addon subfolder path.
     # "sample/path/to/addon"
@@ -1488,11 +1488,6 @@ def register(bl_info):
     updater.version_min_update = (0, 0, 0)
     # updater.version_min_update = None  # None or default for no minimum.
 
-    # Max install (<) will install strictly anything lower than this version
-    # number, useful to limit the max version a given user can install (e.g.
-    # if support for a future version of blender is going away, and you don't
-    # want users to be prompted to install a non-functioning addon)
-    # updater.version_max_update = (9,9,9)
     updater.version_max_update = None  # None or default for no max.
 
     # Function defined above, customize as appropriate per repository
