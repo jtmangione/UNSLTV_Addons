@@ -546,13 +546,7 @@ class SingletonUpdater:
             tag_names.append(tag["name"])
         return tag_names
 
-    def set_check_interval(self, enabled=False,
-                           months=0, days=14, hours=0, minutes=0):
-        """Set the time interval between automated checks, and if enabled.
-
-        Has enabled = False as default to not check against frequency,
-        if enabled, default is 2 weeks.
-        """
+    def set_check_interval(self, enabled=True, months=0, days=1, hours=0, minutes=0):
 
         if type(enabled) is not bool:
             raise ValueError("Enable must be a boolean value")
