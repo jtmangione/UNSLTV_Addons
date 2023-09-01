@@ -1363,13 +1363,6 @@ def register(bl_info):
     # This will print out additional debugging info to the console
     updater.verbose = True  # make False for production default
 
-    # Optional, customize where the addon updater processing subfolder is,
-    # essentially a staging folder used by the updater on its own
-    # Needs to be within the same folder as the addon itself
-    # Need to supply a full, absolute path to folder
-    # updater.updater_path = # set path of updater folder, by default:
-    # 			/addons/{__package__}/{__package__}_updater
-
     # Auto create a backup of the addon when installing other versions.
     updater.backup_current = True  # True by default
 
