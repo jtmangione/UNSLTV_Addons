@@ -562,18 +562,9 @@ class ConfigureCustomPropertiesPanel(bpy.types.Panel):
                             box.prop(c_pos_bone, '["{}"]'.format(prop), text=prop)
                         else:
                             box.prop(c_pos_bone, '["{}"]'.format(prop), text=prop)
-       
-clases = (
-    FloorTarget,
-    VRSettingsOp,
-    LRSettingsOp,
-    FRSettingsOp,
-    RenderSettingsB,
-    ConfigureCustomPropertiesPanel,
-    ConfigureGlobalyNeededProperties
-)
 
 class UpdateConfig(bpy.types.AddonPreferences):
+    bl_idname = __package__
     # addon updater preferences from `__init__`, be sure to copy all of them
     auto_check_update = bpy.props.BoolProperty(
         name = "Auto-check for Update",
@@ -611,6 +602,17 @@ class UpdateConfig(bpy.types.AddonPreferences):
     def draw(self,context):
         layout = self.layout
         addon_updater_ops.update_settings_ui(self,context)
+       
+clases = (
+    FloorTarget,
+    VRSettingsOp,
+    LRSettingsOp,
+    FRSettingsOp,
+    RenderSettingsB,
+    ConfigureCustomPropertiesPanel,
+    ConfigureGlobalyNeededProperties,
+    UpdateConfig
+)
 
 def register():
     addon_updater_ops.register(bl_info)
