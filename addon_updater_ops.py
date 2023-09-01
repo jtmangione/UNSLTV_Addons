@@ -256,7 +256,7 @@ class AddonUpdaterCheckNow(bpy.types.Operator):
 
         updater.set_check_interval(
             enabled=settings.auto_check_update,
-            months=settings.updater_interval_months,
+            months=settings.updater_intrval_months,
             days=settings.updater_interval_days,
             hours=settings.updater_interval_hours,
             minutes=settings.updater_interval_minutes)
