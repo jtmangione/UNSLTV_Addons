@@ -72,7 +72,7 @@ except Exception as e:
 # not match and have errors. Must be all lowercase and no spaces! Should also
 # be unique among any other addons that could exist (using this updater code),
 # to avoid clashes in operator registration.
-updater.addon = "CPPanel"
+updater.addon = "cppanel"
 
 
 # -----------------------------------------------------------------------------
@@ -1340,33 +1340,16 @@ def register(bl_info):
         return
     updater.clear_state()  # Clear internal vars, avoids reloading oddities.
 
-    # Confirm your updater "engine" (Github is default if not specified).
     updater.engine = "Github"
-    # updater.engine = "GitLab"
-    # updater.engine = "Bitbucket"
 
-    # If using private repository, indicate the token here.
-    # Must be set after assigning the engine.
-    # **WARNING** Depending on the engine, this token can act like a password!!
-    # Only provide a token if the project is *non-public*, see readme for
-    # other considerations and suggestions from a security standpoint.
-    updater.private_token = None  # "tokenstring"
+    updater.private_token = None
 
-    # Choose your own username, must match website (not needed for GitLab).
     updater.user = "jtmangione"
 
-    # Choose your own repository, must match git name for GitHUb and Bitbucket,
-    # for GitLab use project ID (numbers only).
     updater.repo = "UNSLTV_Addons"
-
-    # updater.addon = # define at top of module, MUST be done first
-
-    # Website for manual addon download, optional but recommended to set.
+    
     updater.website = "https://github.com/jtmangione/UNSLTV_Addons/"
 
-    # Addon subfolder path.
-    # "sample/path/to/addon"
-    # default is "" or None, meaning root
     updater.subfolder_path = ""
 
     # Used to check/compare versions.
@@ -1379,13 +1362,6 @@ def register(bl_info):
     # Optional, consider turning off for production or allow as an option
     # This will print out additional debugging info to the console
     updater.verbose = True  # make False for production default
-
-    # Optional, customize where the addon updater processing subfolder is,
-    # essentially a staging folder used by the updater on its own
-    # Needs to be within the same folder as the addon itself
-    # Need to supply a full, absolute path to folder
-    # updater.updater_path = # set path of updater folder, by default:
-    # 			/addons/{__package__}/{__package__}_updater
 
     # Auto create a backup of the addon when installing other versions.
     updater.backup_current = True  # True by default
@@ -1488,6 +1464,11 @@ def register(bl_info):
     updater.version_min_update = (0, 0, 0)
     # updater.version_min_update = None  # None or default for no minimum.
 
+    # Max install (<) will install strictly anything lower than this version
+    # number, useful to limit the max version a given user can install (e.g.
+    # if support for a future version of blender is going away, and you don't
+    # want users to be prompted to install a non-functioning addon)
+    # updater.version_max_update = (9,9,9)
     updater.version_max_update = None  # None or default for no max.
 
     # Function defined above, customize as appropriate per repository
@@ -1501,10 +1482,24 @@ def register(bl_info):
     # blender crashes).
     updater.auto_reload_post_update = False
 
+    # The register line items for all operators/panels.
+    # If using bpy.utils.register_module(__name__) to register elsewhere
+    # in the addon, delete these lines (also from unregister).
+    for cls in classes:
+        # Apply annotations to remove Blender 2.8+ warnings, no effect on 2.7
+        make_annotations(cls)
+        # Comment out this line if using bpy.utils.register_module(__name__)
+        bpy.utils.register_class(cls)
+
+    # Special situation: we just updated the addon, show a popup to tell the
+    # user it worked. Could enclosed in try/catch in case other issues arise.
     show_reload_popup()
 
 
 def unregister():
+    for cls in reversed(classes):
+        # Comment out this line if using bpy.utils.unregister_module(__name__).
+        bpy.utils.unregister_class(cls)
 
     # Clear global vars since they may persist if not restarting blender.
     updater.clear_state()  # Clear internal vars, avoids reloading oddities.
