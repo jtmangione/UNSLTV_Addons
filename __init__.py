@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Configure Custom Properties Panel",
     "author":"Estudio 3D UNSL-TV",
-    "version":(2, 4, 8),
+    "version":(2, 4, 9),
     "blender": (3, 5, 0),
     "location": "View3D > N Panel > Controlador de Propiedades",
     "description": "Permite controlar todas las Custom Properties situadas en los huesos c_pos desde un mismo lugar",
